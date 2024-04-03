@@ -28,7 +28,7 @@ Sub CalcolaTfrNetto
 		aliquotaIrpefMedia = calcolaAliquotaIrpefMedia(redditoAnnuoMedio)
 		aliquotaTfrRiferimento = aliquotaIrpefMedia / redditoAnnuoMedio
 		tfrNetto = tfrLordo * (1 - aliquotaTfrRiferimento)
-		sheet.getCellRangeByName("TFR_NETTO").setValue(tfrNetto)
+		sheet.getCellRangeByName("TFR_NETTO").setValue(Format(tfrNetto, "0.00"))
 	Else
 		MsgBox "Foglio 'Foglio 1' non trovato."
 	End If
