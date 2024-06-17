@@ -41,36 +41,33 @@ Function calcolaMesiPassatiDaAssunzione(ByVal dataAssunzione as date) As Integer
 	calcolaMesiPassatiDaAssunzione = (Year(today) - Year(dataAssunzione)) * 12 + (Month(today) - Month(dataAssunzione))
 End Function
 
+
 Function calcolaAliquotaIrpefMedia(ByVal redditoAnnuoMedio) as double
 	Dim scaglione1 as Integer
 	Dim scaglione2 as Integer
 	Dim scaglione3 as Integer
-	Dim scaglione4 as Integer
-	Dim scaglione5 as Integer
-	Dim sottrazione as Integer
-
+	Dim totale as Double
+	
+	scaglione1 = 0
+	scaglione2 = 0
+	scaglione3 = 0
+	
 	' Calcolo scaglione 1
 	scaglione1 = IIf(redditoAnnuoMedio > 28000, 28000, redditoAnnuoMedio)
-	sottrazione = 28000
 
 	' calcolo scaglione 2
 	If redditoAnnuoMedio >= 28001 Then
-	scaglione2 = IIf(redditoAnnuoMedio > 50000, 50000, redditoAnnuoMedio)
-	scaglione2 = scaglione2 - sottrazione
-	sottrazione = 50000
-	Else
-		scaglione2 = 0
+		scaglione2 = IIf(redditoAnnuoMedio > 50000, 50000, redditoAnnuoMedio)
+		scaglione2 = scaglione2 - 28000
 	End If
 
 	' calcolo scaglione 3
 	If redditoAnnuoMedio >= 50001 Then
 		scaglione3 = redditoAnnuoMedio
-		scaglione3 = scaglione3 - sottrazione
-	Else
-		scaglione3 = 0
+		scaglione3 = scaglione3 - 50000
 	End If
 
-	Dim totale as Double
+	
 	totale = 0.23 * scaglione1 + 0.35 * scaglione2 + 0.43 * scaglione3
 
 	calcolaAliquotaIrpefMedia = totale
